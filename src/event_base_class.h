@@ -24,16 +24,24 @@ NAMESPACE_BEGIN(csci3081);
  * @brief The base event class from which all events should derive from.
  */
 class EventBaseClass {
- public:
-  EventBaseClass(void) {}
-  virtual ~EventBaseClass(void) {}
+public:
+	/**
+	 * @brief EventBaseClass constructor
+	 */
+	EventBaseClass(void) {
+	}
 
-  /**
-   * @brief Each event, upon its firing, should emit a message to the user on
-   * stdout saying what happened, in order to aid debugging.
-   *
-   */
-  virtual void EmitMessage(void) = 0;
+	/**
+	 * @brief EventBaseClass destructor
+	 */
+	virtual ~EventBaseClass(void) {
+	}
+
+	/**
+	 * @brief Each event, upon its firing, should emit a message to the user on
+	 * stdout saying what happened, in order to aid debugging.
+	 */
+	virtual void EmitMessage(void) = 0;
 };
 
 NAMESPACE_END(csci3081);

@@ -27,10 +27,10 @@ NAMESPACE_BEGIN(csci3081);
  * than that!
  */
 enum event_commands {
-  COM_TURN_LEFT,
-  COM_TURN_RIGHT,
-  COM_SPEED_UP,
-  COM_SLOW_DOWN
+	COM_TURN_LEFT,
+	COM_TURN_RIGHT,
+	COM_SPEED_UP,
+	COM_SLOW_DOWN
 };
 
 NAMESPACE_END(csci3081);

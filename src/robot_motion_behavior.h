@@ -27,16 +27,21 @@ NAMESPACE_BEGIN(csci3081);
  * motion in which each wheel has distinct speed.
  */
 class RobotMotionBehavior {
- public:
-  RobotMotionBehavior(void) {}
+public:
+	/**
+	 * @brief RobotMotionBehavior constructor
+	 */
+	RobotMotionBehavior(void) {
+	}
 
-  /**
-   * @brief Update the position for a Robot, based on its current
-   * position and velocity.
-   *
-   * @param[in] ent The entitity to update.
-   */
-  void UpdatePosition(class ArenaMobileEntity * const ent, unsigned int dt);
+	/**
+	 * @brief Update the position for a Robot, based on its current
+	 * position and velocity.
+	 *
+	 * @param ent The entitity to update.
+	 * @param dt The change in simulation time since last update
+	 */
+	void UpdatePosition(class ArenaMobileEntity * const ent, unsigned int dt);
 };
 
 NAMESPACE_END(csci3081);

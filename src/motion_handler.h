@@ -38,36 +38,77 @@ NAMESPACE_BEGIN(csci3081);
  * cannot be controlled independently.
  */
 class MotionHandler {
- public:
-  MotionHandler(void) : heading_angle_(0),
-                        speed_(0), max_speed_(15) {}
+public:
+	/**
+	 * @brief MotionHandler constructor
+	 */
+	MotionHandler(void) : heading_angle_(0),
+		speed_(0), max_speed_(15) {
+	}
 
-  /**
-   * @brief Reset the actuators to their newly constructed/un-commanded state.
-   */
-  void Reset(void);
+	/**
+	 * @brief Reset the actuators to their newly constructed/un-commanded state.
+	 */
+	void Reset(void);
 
-  /**
-  * @brief Change the speed and direction according to the sensor readings.
-  *
-  * @param touch sensor that can be activated and contains point-of-contact.
-  *
-  */
-  void UpdateVelocity(SensorTouch st);
+	/**
+	 * @brief Change the speed and direction according to the sensor readings.
+	 * @param touch sensor that can be activated and contains point-of-contact.
+	 */
+	void UpdateVelocity(SensorTouch st);
 
-  double get_speed(void) const { return speed_; }
-  void set_speed(double sp) { speed_ = sp; }
+	/**
+	 * @brief Gets the speed of an entity
+	 * @return double The speed of the entity
+	 */
+	double get_speed(void) const {
+		return speed_;
+	}
 
-  double get_heading_angle(void) const { return heading_angle_;}
-  void set_heading_angle(double ha) { heading_angle_ = ha; }
+	/**
+	 * @brief Sets the speed of an entity
+	 * @param sp The speed of the entity
+	 */
+	void set_speed(double sp) {
+		speed_ = sp;
+	}
 
-  double get_max_speed(void) const { return max_speed_; }
-  void set_max_speed(double ms) { max_speed_ = ms; }
+	/**
+	 * @brief Gets the direction of travel of the entity
+	 * @return double The direction of travel of the entity
+	 */
+	double get_heading_angle(void) const {
+		return heading_angle_;
+	}
 
- private:
-  double heading_angle_;
-  double speed_;
-  double max_speed_;
+	/**
+	 * @brief Sets the direction of travel of the entity
+	 * @param ha The direction of travel of the entity
+	 */
+	void set_heading_angle(double ha) {
+		heading_angle_ = ha;
+	}
+
+	/**
+	 * @brief Gets the max speed of an entity
+	 * @return double The max speed of the entity
+	 */
+	double get_max_speed(void) const {
+		return max_speed_;
+	}
+
+	/**
+	 * @brief Sets the max speed of an entity
+	 * @param ms The max speed of the entity
+	 */
+	void set_max_speed(double ms) {
+		max_speed_ = ms;
+	}
+
+private:
+	double heading_angle_; // The direction of travel of the entity
+	double speed_; // The speed of the entity
+	double max_speed_; // The max speed of the entity
 };
 
 NAMESPACE_END(csci3081);

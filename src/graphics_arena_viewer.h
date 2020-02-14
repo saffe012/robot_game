@@ -52,187 +52,202 @@ NAMESPACE_BEGIN(csci3081);
  *  either the nanovg library or raw OpenGL.
  */
 class GraphicsArenaViewer : public GraphicsApp {
- public:
-  explicit GraphicsArenaViewer(const struct arena_params* const params);
-  virtual ~GraphicsArenaViewer(void) { delete arena_; }
+public:
+	/**
+	 * @brief GraphicsArenaViewer constructor
+	 * @param params Parameters of the Arena class for GraphicsArenaViewer
+	 */
+	explicit GraphicsArenaViewer(const struct arena_params* const params);
+	/**
+	 * @brief GraphicsArenaViewer destructor
+	 */
+	virtual ~GraphicsArenaViewer(void) {
+		delete arena_;
+	}
 
-  /**
-   * @brief Informs the arena of the new time, so that it can update.
-   */
-  void UpdateSimulation(double dt) override;
+	/**
+	 * @brief Informs the arena of the new time, so that it can update.
+	 * @param dt The # of timesteps that has elapsed since the last time
+	 *   position/velocity were updated.
+	 */
+	void UpdateSimulation(double dt) override;
 
-  /**
-   * @brief Handle the user pressing the restart button on the GUI.
-   */
-  void OnRestartBtnPressed();
+	/**
+	 * @brief Handle the user pressing the restart button on the GUI.
+	 */
+	void OnRestartBtnPressed();
 
-  /**
-   * @brief Handle the user pressing the pause button on the GUI.
-   */
-  void OnPauseBtnPressed();
+	/**
+	 * @brief Handle the user pressing the pause button on the GUI.
+	 */
+	void OnPauseBtnPressed();
 
+	/**
+	 * @brief Function that does nothing. Used to Bind battery presenter button to
+	 */
+	void OnBatteryBtnPressed();
 
-  /**
-   * @brief Function that does nothing. Used to Bind battery presenter button to
-   */
-  void OnBatteryBtnPressed();
+	/**
+	 * @brief Called each time the mouse moves on the screen within the GUI
+	 * window.
+	 *
+	 * Origin is at the lower left of the window.
+	 *
+	 * @param x X position of the cursor.
+	 * @param y Y position of the cursor.
+	 */
+	void OnMouseMove(int x, int y) override;
 
-  /**
-   * @brief Called each time the mouse moves on the screen within the GUI
-   * window.
-   *
-   * Origin is at the lower left of the window.
-   *
-   * @param[in] x X position of the cursor.
-   * @param[in] y Y position of the cursor.
-   */
-  void OnMouseMove(int x, int y) override;
+	/**
+	 * @brief Called each time the left mouse button is clicked.
+	 *
+	 * Origin is at the lower left of the window.
+	 *
+	 * @param x The X position of the click.
+	 * @param y The Y position of the click.
+	 */
+	void OnLeftMouseDown(int x, int y) override;
 
-  /**
-   * @brief Called each time the left mouse button is clicked.
-   *
-   * Origin is at the lower left of the window.
-   *
-   * @param[in] x The X position of the click.
-   * @param[in] y The Y position of the click.
-   */
-  void OnLeftMouseDown(int x, int y) override;
+	/**
+	 * @brief Called each time the left mouse button is released.
+	 *
+	 * Origin is at the lower left of the window.
+	 *
+	 * @param x The X position of the release.
+	 * @param y The Y position of the release.
+	 */
+	void OnLeftMouseUp(int x, int y) override;
 
-  /**
-   * @brief Called each time the left mouse button is released.
-   *
-   * Origin is at the lower left of the window.
-   *
-   * @param[in] x The X position of the release.
-   * @param[in] y The Y position of the release.
-   */
-  void OnLeftMouseUp(int x, int y) override;
+	/**
+	 * @brief Called each time the right mouse button is clicked.
+	 *
+	 * Origin is at the lower left of the window.
+	 *
+	 * @param x The X position of the click.
+	 * @param y The Y position of the click.
+	 */
+	void OnRightMouseDown(int x, int y) override;
 
-  /**
-   * @brief Called each time the right mouse button is clicked.
-   *
-   * Origin is at the lower left of the window.
-   *
-   * @param[in] x The X position of the click.
-   * @param[in] y The Y position of the click.
-   */
+	/**
+	 * @brief Called each time the right mouse button is released.
+	 *
+	 * Origin is at the lower left of the window.
+	 *
+	 * @param x The X position of the release.
+	 * @param y The Y position of the release.
+	 */
+	void OnRightMouseUp(int x, int y) override;
 
-  void OnRightMouseDown(int x, int y) override;
+	/**
+	 * @brief Called each time a character key is pressed.
+	 *
+	 * @param c Character representing a key that was pressed.
+	 * @param modifiers Any modifier keys that were also pressed.
+	 */
+	void OnKeyDown(const char *c, int modifiers) override;
 
-  /**
-   * @brief Called each time the right mouse button is released.
-   *
-   * Origin is at the lower left of the window.
-   *
-   * @param[in] x The X position of the release.
-   * @param[in] y The Y position of the release.
-   */
-  void OnRightMouseUp(int x, int y) override;
+	/**
+	 * @brief Called each time a character key is released.
+	 *
+	 * @param c Character representing a key that was released.
+	 * @param modifiers Any modifier keys that were held with the key.
+	 */
+	void OnKeyUp(const char *c, int modifiers) override;
 
-  /**
-   * @brief Called each time a character key is pressed.
-   *
-   * @param[in] c Character representing a key that was pressed.
-   * @param[in] modifiers Any modifier keys that were also pressed.
-   */
-  void OnKeyDown(const char *c, int modifiers) override;
+	/**
+	 * @brief Called each time a special (non-alphabetic) key is pressed.
+	 *
+	 * @param key The key that was pressed.
+	 * @param scancode The scancode corresponding to the key.
+	 * @param modifiers Any modifiers that were also pressed.
+	 */
+	void OnSpecialKeyDown(int key, int scancode, int modifiers) override;
 
-  /**
-   * @brief Called each time a character key is released.
-   *
-   * @param[in] c Character representing a key that was released.
-   * @param[in] modifiers Any modifier keys that were held with the key.
-   */
-  void OnKeyUp(const char *c, int modifiers) override;
+	/**
+	 * @brief Called each time a special (non-alphabetic) key is released.
+	 *
+	 * @param key The key that was released.
+	 * @param scancode The scancode corresponding to the key.
+	 * @param modifiers Any modifiers that were also pressed.
+	 */
+	void OnSpecialKeyUp(int key, int scancode, int modifiers) override;
 
-  /**
-   * @brief Called each time a special (non-alphabetic) key is pressed.
-   *
-   * @param[in] key The key that was pressed.
-   * @param[in] scancode The scancode corresponding to the key.
-   * @param[in] modifiers Any modifiers that were also pressed.
-   */
-  void OnSpecialKeyDown(int key, int scancode, int modifiers) override;
+	/**
+	 * @brief Draw the arena with all robots, obstacles using nanogui.
+	 *
+	 * This is the primary driver for drawing all entities in the arena.  It is
+	 * called at each iteration of \ref nanogui::mainloop().
+	 *
+	 * @param ctx Context for nanogui.
+	 */
+	void DrawUsingNanoVG(NVGcontext *ctx) override;
 
-  /**
-   * @brief Called each time a special (non-alphabetic) key is released.
-   *
-   * @param[in] key The key that was released.
-   * @param[in] scancode The scancode corresponding to the key.
-   * @param[in] modifiers Any modifiers that were also pressed.
-   */
-  void OnSpecialKeyUp(int key, int scancode, int modifiers) override;
+	/**
+	 * @brief Draw using OpenGL. This callback had to be defined, but we are doing
+	 * all drawing with nanovg in this application, so it is empty.
+	 */
+	void DrawUsingOpenGL(void) override {
+	}
 
-  /**
-   * @brief Draw the arena with all robots, obstacles using nanogui.
-   *
-   * This is the primary driver for drawing all entities in the arena.  It is
-   *  called at each iteration of \ref nanogui::mainloop().
-   *
-   * @param[in] ctx Context for nanogui.
-   */
-  void DrawUsingNanoVG(NVGcontext *ctx) override;
+	/**
+	 * @brief Gets the Arena.
+	 * @return Arena Reference to the Arean associated with GraphicsArenaViewer
+	 */
+	Arena* arena(void) const {
+		return arena_;
+	}
 
-  /**
-   * @brief Draw using OpenGL. This callback had to be defined, but we are doing
-   * all drawing with nanovg in this application, so it is empty.
-   */
-  void DrawUsingOpenGL(void) override {}
+private:
+	/**
+	 * @brief Draw a player using nanogui.
+	 *
+	 * This function requires an active nanovg drawing context (ctx), so it should
+	 * probably only be called from with \ref DrawUsingNanoVG().
+	 *
+	 * @param ctx The nanogui context.
+	 * @param robot The player handle.
+	 */
+	void DrawPlayer(NVGcontext *ctx, const class Player* const player);
 
-  Arena* arena(void) const { return arena_; }
+	/**
+	 * @brief Draw an obstacle in the arena using nanogui.
+	 *
+	 * This function requires an active nanovg drawing context (ctx), so it should
+	 * probably only be called from with \ref DrawUsingNanoVG().
+	 *
+	 * @param ctx The nanogui context.
+	 * @param obstacle The obstacle handle.
+	 */
+	void DrawObstacle(NVGcontext *ctx, const class Obstacle* const obstacle);
 
- private:
-  /**
-   * @brief Draw a player using nanogui.
-   *
-   * This function requires an active nanovg drawing context (ctx), so it should
-   * probably only be called from with \ref DrawUsingNanoVG().
-   *
-   * @param[in] ctx The nanogui context.
-   * @param[in] robot The player handle.
-   */
-  void DrawPlayer(NVGcontext *ctx, const class Player* const player);
+	/**
+	 * @brief Draw a robot using nanogui.
+	 *
+	 * This function requires an active nanovg drawing context (ctx), so it should
+	 * probably only be called from with \ref DrawUsingNanoVG().
+	 *
+	 * @param ctx The nanogui context.
+	 * @param robot The robot handle.
+	 */
+	void DrawRobot(NVGcontext *ctx, const Robot* const robot);
 
-  /**
-   * @brief Draw an obstacle in the arena using nanogui.
-   *
-   * This function requires an active nanovg drawing context (ctx), so it should
-   * probably only be called from with \ref DrawUsingNanoVG().
-   *
-   * @param[in] ctx The nanogui context.
-   * @param[in] obstacle The obstacle handle.
-   */
-  void DrawObstacle(NVGcontext *ctx, const class Obstacle* const obstacle);
+	/**
+	 * @brief Draw the home base using nanogui.
+	 *
+	 * @param ctx The nanogui context.
+	 * @param home The home base handle.
+	 */
+	void DrawHomeBase(NVGcontext *ctx, const class HomeBase* const home);
 
-  /**
-   * @brief Draw a robot using nanogui.
-   *
-   * This function requires an active nanovg drawing context (ctx), so it should
-   * probably only be called from with \ref DrawUsingNanoVG().
-   *
-   * @param[in] ctx The nanogui context.
-   * @param[in] robot The robot handle.
-   */
-  void DrawRobot(NVGcontext *ctx, const Robot* const robot);
+	Arena *arena_; // Arena to bedisplaye with graphics
+	bool paused_; // holds whether game is paused or not
+	nanogui::Button *pause_btn_; // button to pause and unpause game
+	nanogui::Button *battery_btn_; // displays the player's battery level
+	double last_dt; // holds the time since the last update of GraphicsArenaViewer::UpdateSimulation
 
-  /**
-   * @brief Draw the home base using nanogui.
-   *
-   * @param[in] ctx The nanogui context.
-   * @param[in] home The home base handle.
-   */
-  void DrawHomeBase(NVGcontext *ctx, const class HomeBase* const home);
-
-  Arena *arena_;
-  bool paused_;
-  nanogui::Button *pause_btn_;
-  nanogui::Button *battery_btn_;
-
-  double last_dt;
-
-  // Satisfies compilers warning that the copy constructor should exist.
-  GraphicsArenaViewer& operator=(const GraphicsArenaViewer& other) = delete;
-  GraphicsArenaViewer(const GraphicsArenaViewer& other) = delete;
+	// Satisfies compilers warning that the copy constructor should exist.
+	GraphicsArenaViewer& operator=(const GraphicsArenaViewer& other) = delete;
+	GraphicsArenaViewer(const GraphicsArenaViewer& other) = delete;
 };
 
 NAMESPACE_END(csci3081);

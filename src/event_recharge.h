@@ -26,10 +26,20 @@ NAMESPACE_BEGIN(csci3081);
  * has with a \ref RechargeStation.
  */
 class EventRecharge : public EventBaseClass {
- public:
-  EventRecharge(void) {}
+public:
+	/**
+	 * @brief EventRecharge constructor
+	 */
+	EventRecharge(void) {
+	}
 
-  void EmitMessage(void) override { printf("Robot Battery recharged!\n"); }
+	/**
+	 * @brief Each event, upon its firing, should emit a message to the user on
+	 * stdout saying what happened, in order to aid debugging.
+	 */
+	void EmitMessage(void) override {
+		printf("Robot Battery recharged!\n");
+	}
 };
 
 NAMESPACE_END(csci3081);

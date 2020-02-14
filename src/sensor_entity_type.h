@@ -34,37 +34,43 @@ class ArenaEntity;
  * become active when an entity enters the entity type of a robot.
  */
 class SensorEntityType : public Sensor {
- public:
-  SensorEntityType();
+public:
+	/**
+	 * @brief SensorEntityType constructor
+	 */
+	SensorEntityType();
 
-  /**
-   * @brief Get the current activation reading from the sensor.
-   */
-  enum entity_type activated(void) { return type_; }
+	/**
+	 * @brief Get the current activation reading from the sensor.
+	 * @return enum entity_type Boolean to represent if sensor is active
+	 */
+	enum entity_type activated(void) {
+		return type_;
+	}
 
-  /**
-   * @brief Set the current activation reading of the sensor.
-   */
-  void activated(enum entity_type value) { type_ = value; }
+	/**
+	 * @brief Set the current activation reading of the sensor.
+	 * @param value Boolean to represent if sensor is active
+	 */
+	void activated(enum entity_type value) {
+		type_ = value;
+	}
 
-  /**
-   * @brief Compute a new reading based on the entity type event.
-   *
-   * Note that proximity events can report "no entity type" which
-   * will inactivate the sensor.
-   *
-   * @param an entity type event.
-   *
-   */
-  void Accept(const EventEntityType * const e);
+	/**
+	 * @brief Compute a new reading based on the entity type event.
+	 * Note that proximity events can report "no entity type" which
+	 * will inactivate the sensor.
+	 * @param an entity type event.
+	 */
+	void Accept(const EventEntityType * const e);
 
-  /**
-   * @brief Reset the entity type sensor to its newly constructed state.
-   */
-  void Reset(void);
+	/**
+	 * @brief Reset the entity type sensor to its newly constructed state.
+	 */
+	void Reset(void);
 
- private:
-  enum entity_type type_;
+private:
+	enum entity_type type_; // type of entity detected by sensor
 };
 
 NAMESPACE_END(csci3081);

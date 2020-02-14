@@ -24,14 +24,17 @@ NAMESPACE_BEGIN(csci3081);
  * @brief A simple representation of a position of an entity within the arena.
  */
 struct Color {
- public:
-  Color(void) : r(0), g(0), b(0), a(255) {}
-  Color(int in_r, int in_g, int in_b, int in_a)
-    : r(in_r), g(in_g), b(in_b), a(in_a) { }
-  int r;
-  int g;
-  int b;
-  int a;
+public:
+	Color(void) : r(0), g(0), b(0), a(255) { // default : black
+	}
+	Color(int in_r, int in_g, int in_b, int in_a)
+		: r(in_r), g(in_g), b(in_b), a(in_a) {
+	}
+
+	int r; // red
+	int g; // green
+	int b; // blue
+	int a; // alpha
 };
 
 NAMESPACE_END(csci3081);

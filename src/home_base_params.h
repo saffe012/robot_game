@@ -21,12 +21,14 @@ NAMESPACE_BEGIN(csci3081);
 /*******************************************************************************
  * Structure Definitions
  ******************************************************************************/
- /**
-  * @brief Define the parameter for the HomeBase.
-  */
+/**
+ * @brief Define the parameters for the HomeBase.
+ */
 struct home_base_params : public player_params {
-  home_base_params(void) :
-      player_params() {}
+	// player_params(void) : arena_mobile_entity_params(arena_entity_params(radius(), pos(), color()), collision_delta()), battery_max_charge(), angle_delta()
+	home_base_params(void) :
+		player_params() {
+	}
 };
 
 NAMESPACE_END(csci3081);

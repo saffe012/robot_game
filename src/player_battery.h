@@ -25,60 +25,70 @@ NAMESPACE_BEGIN(csci3081);
  * @brief The battery for a robot.
  */
 class PlayerBattery {
- public:
-  explicit PlayerBattery(double max_charge) : charge_(max_charge),
-                                             max_charge_(max_charge) {}
+public:
+	/**
+	 * @brief PlayerBattery constructor
+	 * @param max_charge The maximum and starting charge level for the battery
+	 */
+	explicit PlayerBattery(double max_charge) : charge_(max_charge),
+		max_charge_(max_charge) {
+	}
 
-  /**
-   * @brief The amount of energy consumed by the player due to its linear speed
-   * its is directly proportional to that speed, with a scaling factor.
-   */
-  double kLINEAR_SCALE_FACTOR = 0.01;
+	/**
+	 * @brief The amount of energy consumed by the player due to its linear speed
+	 * its is directly proportional to that speed, with a scaling factor.
+	 */
+	double kLINEAR_SCALE_FACTOR = 0.01;
 
-  /**
-   * @brief The amount of energy consumed by the player due to its angular speed
-   * its is directly proportional to that speed, with a scaling factor.
-   */
-  double kANGULAR_SCALE_FACTOR = 0.01;
+	/**
+	 * @brief The amount of energy consumed by the player due to its angular speed
+	 * its is directly proportional to that speed, with a scaling factor.
+	 */
+	double kANGULAR_SCALE_FACTOR = 0.01;
 
-  /**
-   * @brief Get the current battery level.
-   */
-  double level(void) const { return charge_; }
+	/**
+	 * @brief Get the current battery level.
+	 * @return double Battery level of robot
+	 */
+	double level(void) const {
+		return charge_;
+	}
 
-  /**
-   * @brief Handle a recharge event by instantly restoring the player's battery
-   * to its maximum value.
-   */
-  void EventRecharge(void) { charge_ = max_charge_ + 5; }
+	/**
+	 * @brief Handle a recharge event by instantly restoring the player's battery
+	 * to its maximum value.
+	 */
+	void EventRecharge(void) {
+		charge_ = max_charge_ + 5;
+	}
 
-  /**
-   * @brief Reset the player's battery to its newly constructed/undepleted state.
-   */
-  void Reset(void) { charge_ = max_charge_; }
+	/**
+	 * @brief Reset the player's battery to its newly constructed/undepleted state.
+	 */
+	void Reset(void) {
+		charge_ = max_charge_;
+	}
 
-  /**
-   * @brief Calculate the new battery level based on the current linear/angular speed.
-   *
-   * @param linear_vel The current linear speed, in m/s.
-   * @param angular_vel The current angular speed, in rad/s.
-   *
-   * @return The updated battery level.
-   */
-  double Deplete(__unused Position old_pos,
-    __unused Position new_pos, __unused double dt);
+	/**
+	 * @brief Calculate the new battery level based on the distance travelled
+	 * @param old_pos Entities Position at last simulation update
+	 * @param new_pos Entities Position at current simulation update
+	 * @param dt Change in time of simulation
+	 * @return double The updated battery level.
+	 */
+	double Deplete(Position old_pos,
+	               Position new_pos, __unused double dt);
 
-  /**
-   * @brief This is how the battery can be informed a collision occured.
-   * Deplete accordingly.
-   *
-   * @param a collision event.
-   */
-  void Accept(const EventCollision * const e);
+	/**
+ * @brief This is how the battery can be informed a collision occured.
+ * Deplete accordingly.
+ * @param a collision event.
+ */
+	void Accept(const EventCollision * const e);
 
- private:
-  double charge_;
-  double max_charge_;
+private:
+	double charge_; // current battery level of robot
+	double max_charge_; // highest possible battery level of robot
 };
 
 NAMESPACE_END(csci3081);

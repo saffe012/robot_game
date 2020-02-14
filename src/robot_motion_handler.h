@@ -41,43 +41,82 @@ NAMESPACE_BEGIN(csci3081);
  */
 
 class MotionHandlerRobot : public MotionHandler {
- public:
-  MotionHandlerRobot(void);
+public:
+	/**
+	 * @brief MotionHandlerRobot constructor
+	 */
+	MotionHandlerRobot(void);
 
-  /**
-   * @brief Reset the actuators to their newly constructed/un-commanded state.
-   */
-  void Reset(void);
+	/**
+	 * @brief Reset the actuators to their newly constructed/un-commanded state.
+	 */
+	void Reset(void);
 
-  /**
-  * @brief Change the speed and direction according to the sensor readings.
-  *
-  * @param touch sensor that can be activated and contains point-of-contact.
-  *
-  */
-  void UpdateVelocity(SensorTouch st);
+	/**
+	 * @brief Change the speed and direction according to the sensor readings.
+	 * @param st Touch sensor that can be activated and contains point-of-contact.
+	 */
+	void UpdateVelocity(SensorTouch st);
 
-  /**
-  * @brief Change the speed and direction according to the sensor readings.
-  *
-  * @param proximity sensor that can be activated and contains point-of-contact.
-  *
-  */
-  void UpdateVelocity(SensorProximity sp);
+	/**
+	 * @brief Change the speed and direction according to the sensor readings.
+	 * @param sp Proximity sensor that can be activated and contains point-of-contact.
+	 */
+	void UpdateVelocity(SensorProximity sp);
 
-  double get_speed(void) const { return speed_; }
-  void set_speed(double sp) { speed_ = sp; }
 
-  double get_heading_angle(void) const { return heading_angle_;}
-  void set_heading_angle(double ha) { heading_angle_ = ha; }
+	/**
+	 * @brief Gets the speed of the robot
+	 * @return double Speed of the robot
+	 */
+	double get_speed(void) const {
+		return speed_;
+	}
 
-  double get_max_speed(void) const { return max_speed_; }
-  void set_max_speed(double ms) { max_speed_ = ms; }
+	/**
+	 * @brief Sets the speed of the robot
+	 * @param sp Speed of the robot
+	 */
+	void set_speed(double sp) {
+		speed_ = sp;
+	}
 
- private:
-  double heading_angle_;
-  double speed_;
-  double max_speed_;
+	/**
+	 * @brief Gets the heading angle of the robot
+	 * @return double Angle in degrees the robot is travelling
+	 */
+	double get_heading_angle(void) const {
+		return heading_angle_;
+	}
+
+	/**
+	 * @brief Sets the heading angle of the robot
+	 * @param ha Angle in degrees the robot is travelling
+	 */
+	void set_heading_angle(double ha) {
+		heading_angle_ = ha;
+	}
+
+	/**
+	 * @brief Gets the max speed of the player
+	 * @return double highest speed possible for player
+	 */
+	double get_max_speed(void) const {
+		return max_speed_;
+	}
+
+	/**
+	 * @brief Sets the max speed of the player
+	 * @param ms highest speed possible for player
+	 */
+	void set_max_speed(double ms) {
+		max_speed_ = ms;
+	}
+
+private:
+	double heading_angle_; // angle in degrees the robot is travelling
+	double speed_; // speed the robot is travelling
+	double max_speed_; // highest speed possible for robot
 };
 
 NAMESPACE_END(csci3081);

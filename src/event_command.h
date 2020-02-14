@@ -27,14 +27,32 @@ NAMESPACE_BEGIN(csci3081);
  * sent to the robot.
  */
 class EventCommand : public EventBaseClass {
- public:
-  explicit EventCommand(enum event_commands cmd) : cmd_(cmd) {}
+public:
+	/**
+	 * @brief EventCommand constructor
+	 * @param cmd User inputed command type
+	 */
+	explicit EventCommand(enum event_commands cmd) : cmd_(cmd) {
+	}
 
-  void EmitMessage(void) override { printf("Motion cmd %d received\n", cmd_); }
-  enum event_commands cmd(void) const { return cmd_; }
+	/**
+	 * @brief Each event, upon its firing, should emit a message to the user on
+	 * stdout saying what happened, in order to aid debugging.
+	 */
+	void EmitMessage(void) override {
+		printf("Motion cmd %d received\n", cmd_);
+	}
 
- private:
-  enum event_commands cmd_;
+	/**
+	 * @brief Gets the key command type
+	 * @return enum event_commands User inputed command type
+	 */
+	enum event_commands cmd(void) const {
+		return cmd_;
+	}
+
+private:
+	enum event_commands cmd_; // User inputed command type
 };
 
 NAMESPACE_END(csci3081);

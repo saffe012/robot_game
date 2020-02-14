@@ -20,18 +20,20 @@ NAMESPACE_BEGIN(csci3081);
 /*******************************************************************************
  * Structure Definitions
  ******************************************************************************/
- /**
-  * @brief Inherits from mobile_entity_params to set various
-  * properties of the robot.
-  **/
+/**
+ * @brief Inherits from mobile_entity_params to set various
+ * properties of the robot.
+ **/
 struct player_params : public arena_mobile_entity_params {
-  player_params(void) :
-      arena_mobile_entity_params(),
-      battery_max_charge(),
-      angle_delta() {}
+	// arena_mobile_entity_params(void) : arena_entity_params(radius(), pos(), color()), collision_delta()
+	player_params(void) :
+		arena_mobile_entity_params(),
+		battery_max_charge(),
+		angle_delta() {
+	}
 
-  double battery_max_charge;
-  uint angle_delta;
+	double battery_max_charge; // max battery level of player
+	uint angle_delta; // change in degrees of the players heading angle
 };
 
 NAMESPACE_END(csci3081);

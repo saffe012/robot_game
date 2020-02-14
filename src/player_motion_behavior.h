@@ -30,16 +30,20 @@ NAMESPACE_BEGIN(csci3081);
  * motion in which each wheel has distinct speed.
  */
 class PlayerMotionBehavior {
- public:
-  PlayerMotionBehavior(void) {}
+public:
+	/**
+	 * @brief PlayerMotionBehavior constructor
+	 */
+	PlayerMotionBehavior(void) {
+	}
 
-  /**
-   * @brief Update the position for an ArenaEntity, based on its current
-   * position and velocity.
-   *
-   * @param[in] ent The entitity to update.
-   */
-  void UpdatePosition(class ArenaMobileEntity * const ent, unsigned int dt);
+	/**
+	 * @brief Update the position for an ArenaEntity, based on its current
+	 * position and velocity.
+	 * @param ent The entitity to update.
+	 * @param dt The change in time of the simulation
+	 */
+	void UpdatePosition(class ArenaMobileEntity * const ent, unsigned int dt);
 };
 
 NAMESPACE_END(csci3081);

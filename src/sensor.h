@@ -11,8 +11,12 @@
  * @brief Class representing a sensor.
  */
 class Sensor {
- public:
-  Sensor(void) {}
+public:
+	/**
+	 * @brief Sensor constructor
+	 */
+	Sensor(void) {
+	}
 };
 
 #endif  // SRC_SENSOR_H_

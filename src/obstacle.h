@@ -21,22 +21,31 @@ NAMESPACE_BEGIN(csci3081);
 /*******************************************************************************
  * Class Definitions
  ******************************************************************************/
- /**
-  * @brief Class representing an obstacle within the arena.
-  */
-class Obstacle: public ArenaImmobileEntity {
- public:
-  Obstacle(double radius, const Position& pos,
-                   const csci3081::Color& color);
+/**
+ * @brief Class representing an obstacle within the arena.
+ */
+class Obstacle : public ArenaImmobileEntity {
+public:
+	/**
+	 * Obstacle constructor
+	 * @param radius Radius of entity in pixels
+	 * @param pos Holds x and y coordinates of the entity in the arena
+	 * @param color Holds color of entity in arena in RGBA
+	 */
+	Obstacle(double radius, const Position& pos,
+	         const csci3081::Color& color);
 
-  std::string get_name(void) const override {
-    return "Obstacle" + std::to_string(id_);
-  }
+	/**
+	 * @brief Gets the name of class
+	 * @return String The string "Obstacle" + id
+	 */
+	std::string get_name(void) const override {
+		return "Obstacle" + std::to_string(id_);
+	}
 
- private:
-  static uint next_id_;
-
-  int id_;
+private:
+	static uint next_id_; // id of next obstacle
+	int id_; // id of obstacle
 };
 
 NAMESPACE_END(csci3081);

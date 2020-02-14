@@ -35,37 +35,43 @@ class ArenaEntity;
  * proximity sensor.
  */
 class SensorDistress : public Sensor {
- public:
-  SensorDistress();
+public:
+	/**
+	 * @brief SensorDistress constructor
+	 */
+	SensorDistress();
 
-  /**
-   * @brief Get the current activation reading from the sensor.
-   */
-  int activated(void) { return activated_; }
+	/**
+	 * @brief Get the current activation reading from the sensor.
+	 * @return int Boolean to represent if sensor is active
+	 */
+	int activated(void) {
+		return activated_;
+	}
 
-  /**
-   * @brief Set the current activation reading of the sensor.
-   */
-  void activated(int value) { activated_ = value; }
+	/**
+	 * @brief Set the current activation reading of the sensor.
+	 * @param value Boolean to represent if sensor is active
+	 */
+	void activated(int value) {
+		activated_ = value;
+	}
 
-  /**
-   * @brief Compute a new reading based on the distress event.
-   *
-   * Note that distress events can report "no distress" which
-   * will inactivate the sensor.
-   *
-   * @param a distress event.
-   *
-   */
-  void Accept(const EventDistress * const e);
+	/**
+	 * @brief Compute a new reading based on the distress event.
+	 * Note that distress events can report "no distress" which
+	 * will inactivate the sensor.
+	 * @param e A distress event.
+	 */
+	void Accept(const EventDistress * const e);
 
-  /**
-   * @brief Reset the distress sensor to its newly constructed state.
-   */
-  void Reset(void);
+	/**
+	 * @brief Reset the distress sensor to its newly constructed state.
+	 */
+	void Reset(void);
 
- private:
-  int activated_;
+private:
+	int activated_; // Boolean to represent if sensor is active
 };
 
 NAMESPACE_END(csci3081);

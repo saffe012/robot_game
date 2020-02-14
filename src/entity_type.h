@@ -25,13 +25,13 @@ NAMESPACE_BEGIN(csci3081);
  * @brief Represents the types of entities in the arena
  */
 enum entity_type {
-  kRobot,
-  kSuperBot,
-  kPlayer,
-  kHomebase,
-  kRechargeStation,
-  kWall,
-  kNone
+	kRobot,
+	kSuperBot,
+	kPlayer,
+	kHomebase,
+	kRechargeStation,
+	kWall,
+	kNone
 };
 
 NAMESPACE_END(csci3081);

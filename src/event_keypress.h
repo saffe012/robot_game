@@ -30,14 +30,32 @@ NAMESPACE_BEGIN(csci3081);
  * where they are interpreted further
  */
 class EventKeypress : public EventBaseClass {
- public:
-  explicit EventKeypress(int key) : key_(key) {}
+public:
+	/**
+	 * @brief EventKeypress constructor
+	 * @param key Numerical value of the keypress
+	 */
+	explicit EventKeypress(int key) : key_(key) {
+	}
 
-  void EmitMessage(void) override { printf("Keypress command received\n"); }
-  enum event_commands keypress_to_cmd(int key);
- private:
-  // enum event_commands keypress_to_cmd(int key);
-  int key_;
+	/**
+	 * @brief Each event, upon its firing, should emit a message to the user on
+	 * stdout saying what happened, in order to aid debugging.
+	 */
+	void EmitMessage(void) override {
+		printf("Keypress command received\n");
+	}
+
+	/**
+	 * @brief Turns the numerical value of the keypress into a valid type of
+	 * keypress used by the program.
+	 * @param key Numerical value of the keypress
+	 * @return enum event_commands Type of keypress
+	 */
+	enum event_commands keypress_to_cmd(int key);
+
+private:
+	int key_; // Numerical value of the keypress
 };
 
 NAMESPACE_END(csci3081);

@@ -41,43 +41,82 @@ NAMESPACE_BEGIN(csci3081);
  * cannot be controlled independently.
  */
 
-class MotionHandlerPlayer : public MotionHandler{
- public:
-  MotionHandlerPlayer(void);
+class MotionHandlerPlayer : public MotionHandler {
+public:
+	/**
+	 * @brief MotionHandlerPlayer constructor
+	 */
+	MotionHandlerPlayer(void);
 
-  /**
-   * @brief Reset the actuators to their newly constructed/un-commanded state.
-   */
-  void Reset(void);
+	/**
+	 * @brief Reset the actuators to their newly constructed/un-commanded state.
+	 */
+	void Reset(void);
 
-  /**
-   * @brief Command from user keypress via the viewer.
-   *
-   * @param cmd The command.
-   */
-  void AcceptCommand(enum event_commands cmd);
+	/**
+	 * @brief Command from user keypress via the viewer.
+	 * @param cmd The command.
+	 */
+	void AcceptCommand(enum event_commands cmd);
 
-  /**
-  * @brief Change the speed and direction according to the sensor readings.
-  *
-  * @param touch sensor that can be activated and contains point-of-contact.
-  *
-  */
-  void UpdateVelocity(SensorTouch st);
+	/**
+	 * @brief Change the speed and direction according to the sensor readings.
+	 * @param st Touch sensor that can be activated and contains point-of-contact.
+	 */
+	void UpdateVelocity(SensorTouch st);
 
-  double get_speed(void) const { return speed_; }
-  void set_speed(double sp) { speed_ = sp; }
+	/**
+	 * @brief Gets the speed of the player
+	 * @return double Speed of the player
+	 */
+	double get_speed(void) const {
+		return speed_;
+	}
 
-  double get_heading_angle(void) const { return heading_angle_;}
-  void set_heading_angle(double ha) { heading_angle_ = ha; }
+	/**
+	 * @brief Sets the speed of the player
+	 * @param sp Speed of the player
+	 */
+	void set_speed(double sp) {
+		speed_ = sp;
+	}
 
-  double get_max_speed(void) const { return max_speed_; }
-  void set_max_speed(double ms) { max_speed_ = ms; }
+	/**
+	 * @brief Gets the heading angle of the player
+	 * @return double Angle in degrees the player is travelling
+	 */
+	double get_heading_angle(void) const {
+		return heading_angle_;
+	}
 
- private:
-  double heading_angle_;
-  double speed_;
-  double max_speed_;
+	/**
+	 * @brief Sets the heading angle of the player
+	 * @param ha Angle in degrees the player is travelling
+	 */
+	void set_heading_angle(double ha) {
+		heading_angle_ = ha;
+	}
+
+	/**
+	 * @brief Gets the max speed of the player
+	 * @return double highest speed possible for player
+	 */
+	double get_max_speed(void) const {
+		return max_speed_;
+	}
+
+	/**
+	 * @brief Sets the max speed of the player
+	 * @param ms highest speed possible for player
+	 */
+	void set_max_speed(double ms) {
+		max_speed_ = ms;
+	}
+
+private:
+	double heading_angle_; // angle in degrees the player is travelling
+	double speed_; // speed the player is travelling
+	double max_speed_; // highest speed possible for player
 };
 
 NAMESPACE_END(csci3081);

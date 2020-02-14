@@ -41,39 +41,85 @@ NAMESPACE_BEGIN(csci3081);
  * Also, all arena entities are circular.
  */
 class ArenaEntity {
- public:
-  ArenaEntity(double radius, const Position& pos,
-              const csci3081::Color& color) :
-      radius_(radius), pos_(pos), color_(color) {}
-  virtual ~ArenaEntity(void) {}
+public:
+	/**
+	 * @brief ArenaEntity constructor
+	 * @param radius Radius of entity in pixels
+	 * @param pos Holds x and y coordinates of the entity in the arena
+	 * @param color Holds color of entity in arena in RGBA
+	 */
+	ArenaEntity(double radius, const Position& pos, const csci3081::Color& color) :
+		radius_(radius), pos_(pos), color_(color) {
+	}
 
-  /**
-   * @brief Perform whatever updates are needed for a particular entity after 1
-   * timestep (updating position, changing color, etc.).
-   */
-  virtual void TimestepUpdate(__unused uint dt) {}
+	/**
+	 * @brief ArenaEntity destructor
+	 */
+	virtual ~ArenaEntity(void) {
+	}
 
-  /**
-   * @brief Reset the entity to its newly constructed state.
-   */
-  virtual void Reset(void) {}
+	/**
+	 * @brief Perform whatever updates are needed for a particular entity after 1
+	 * timestep (updating position, changing color, etc.).
+	 * @param dt The # of timesteps that has elapsed since the last time
+	 *   position/velocity were updated.
+	 */
+	virtual void TimestepUpdate(__unused uint dt) {
+	}
 
-  /**
-   * @brief Get the name of an entity for visualization purposes, to aid in
-   * debugging.
-   */
-  virtual std::string get_name(void) const = 0;
+	/**
+	 * @brief Reset the entity to its newly constructed state.
+	 */
+	virtual void Reset(void) {
+	}
 
-  void set_pos(const Position& pos) { pos_ = pos; }
-  const Position& get_pos(void) const { return pos_; }
-  const csci3081::Color& get_color(void) const { return color_; }
-  void set_color(const csci3081::Color& color) { color_ = color; }
-  double get_radius(void) const { return radius_; }
+	/**
+	 * @brief Get the name of an entity for visualization purposes, to aid in
+	 * debugging.
+	 */
+	virtual std::string get_name(void) const = 0;
 
- private:
-  double radius_;
-  Position pos_;
-  csci3081::Color color_;
+	/**
+	 * @brief Sets the position of the ArenaEntity
+	 * @param pos New position of the ArenaEntity
+	 */
+	void set_pos(const Position& pos) {
+		pos_ = pos;
+	}
+
+	/**
+	 * @brief Gets the position of the ArenaEntity
+	 */
+	const Position& get_pos(void) const {
+		return pos_;
+	}
+
+	/**
+	 * @brief Gets the color of the ArenaEntity
+	 */
+	const csci3081::Color& get_color(void) const {
+		return color_;
+	}
+
+	/**
+	 * @brief Sets the color of the ArenaEntity
+	 * @param color New color of the ArenaEntity
+	 */
+	void set_color(const csci3081::Color& color) {
+		color_ = color;
+	}
+
+	/**
+	 * @brief Gets the radius of the ArenaEntity
+	 */
+	double get_radius(void) const {
+		return radius_;
+	}
+
+private:
+	double radius_; // radius of entity in pixels
+	Position pos_; // holds x and y coordinates of the entity in the arena
+	csci3081::Color color_;  // holds color of entity in arena in RGBA
 };
 
 NAMESPACE_END(csci3081);

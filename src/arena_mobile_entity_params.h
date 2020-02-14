@@ -24,13 +24,11 @@ NAMESPACE_BEGIN(csci3081);
  * @brief Define the parameters for a mobile entity within the arena.
  */
 struct arena_mobile_entity_params : public arena_entity_params {
-  arena_mobile_entity_params(void) : arena_entity_params(),
-                                     collision_delta() {}
+	// arena_entity_params(void) : radius(), pos(), color()
+	arena_mobile_entity_params(void) : arena_entity_params(), collision_delta() {
+	}
 
-  /**
-   * Minimum distance between entities that qualifies as a collision.
-   */
-  double collision_delta;
+	double collision_delta; // Minimum distance between entities that qualifies as a collision.
 };
 
 NAMESPACE_END(csci3081);

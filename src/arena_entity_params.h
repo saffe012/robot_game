@@ -23,14 +23,16 @@ NAMESPACE_BEGIN(csci3081);
 /*******************************************************************************
  * Structure Definitions
  ******************************************************************************/
- /**
- * @brief Define the parameters for the arena entities.
+/**
+ * @brief Defines the parameters for the arena entities.
  */
 struct arena_entity_params {
-  arena_entity_params(void) : radius(), pos(), color() {}
-  double radius;
-  Position pos;
-  csci3081::Color color;
+	arena_entity_params(void) : radius(), pos(), color() {
+	}
+
+	double radius; // radius of entity in pixels
+	Position pos; // holds x and y coordinates of the entity in the arena
+	csci3081::Color color; // holds color of entity in arena in RGBA
 };
 
 NAMESPACE_END(csci3081);
